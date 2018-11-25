@@ -1,0 +1,16 @@
+server:
+  port: 8081
+spring:        
+  h2:
+    console:
+      enabled: true
+      path: /console
+  datasource:
+    url: jdbc:h2:file:../data/databases
+    username: sa
+    password: sa
+cxf:
+  path: /api
+  jaxrs:
+    component-scan: true
+    classes-scan-packages: org.apache.cxf.jaxrs.swagger
