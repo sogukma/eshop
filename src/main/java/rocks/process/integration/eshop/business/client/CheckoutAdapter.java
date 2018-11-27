@@ -19,13 +19,13 @@ public class CheckoutAdapter {
 
     public void doCheckout(OrderMessage orderMessage){
 
-        restTemplate.postForObject("http://localhost:8080/order", new HttpEntity<>(orderMessage), OrderMessage.class);
+        restTemplate.postForObject("https://camel.herokuapp.com/order", new HttpEntity<>(orderMessage), OrderMessage.class);
 
     }
     
     public void doOrder(OrderMessage orderMessage){
 
-        restTemplate.postForObject("http://localhost:8080/order", new HttpEntity<>(orderMessage), OrderMessage.class);
+        restTemplate.postForObject("https://camel.herokuapp.com/order", new HttpEntity<>(orderMessage), OrderMessage.class);
 
     }
     
