@@ -43,12 +43,14 @@ public class CustomerAPIImpl implements CustomerAPI {
     }
 
     @Override
-    public void editLoyaltyBalance(String customerId) {
+    public Customer editLoyaltyBalance(String customerId) {
         
     	Customer c = customerRepository.findById(Long.parseLong(customerId)).get(); //id 2 Customer
     	///Orders order = ordersRepository.findById(Long.parseLong(orderId)).get();
     	c.setLoyalityPoints(c.getLoyalityPoints()- 20);
+    	customerRepository.save(c);
     	
     	logger.info("customerId: " + customerId + ". points " + c.getLoyalityPoints());
+    	return c;
     }
 }

@@ -22,9 +22,9 @@ public interface CustomerAPI {
     @Produces({"application/json"})
     public Customer findCustomer(@PathParam("customerId") String customerId);
 
-    @PUT
+    @GET
     @Path("/loyalty/{customerId}")
     @Consumes({"application/json"})
-    public void editLoyaltyBalance(@PathParam("customerId") String customerId);
+    public Customer editLoyaltyBalance(@PathParam("customerId") String customerId);
 }
 
