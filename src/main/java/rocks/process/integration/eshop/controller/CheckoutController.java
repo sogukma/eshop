@@ -49,10 +49,16 @@ public class CheckoutController {
 		Customer c = customerRepository.findById(2L).get(); //id 2 Customer
 		Pretzel p = pretzelRepository.findById(1L).get(); //id 1 Pretzel
     	
+		
 		Orders order = ordersService.orderPretzel("dsf", "ads", 1);
+		
+		//loyalitätspunkt wird gesteigert wegen bestellung
+		c.setLoyalityPoints(c.getLoyalityPoints() + (int) order.getTotalCost()/10);
+		
 		List<OrderMessage.OrderItem> orderItems = new ArrayList<>();
 		orderItems.add(new OrderMessage.OrderItem("1", p.getPretzelId()+"", 1)); // item 1, productId 1, quantity 1
 		
+		//loyalitätspunkte werden in zahlung eingefügt
 		Double charingAmountOfMoney = order.getTotalCost()-c.getLoyalityPoints();
 		
 		OrderMessage orderMessage = new OrderMessage(order.getOrderId()+"", c.getCustomerId()+"", 1D, 1, orderItems, null, null, null, "Order Placed", p.getStockAmount(), charingAmountOfMoney);		

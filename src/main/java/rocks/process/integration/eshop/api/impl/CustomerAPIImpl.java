@@ -47,7 +47,7 @@ public class CustomerAPIImpl implements CustomerAPI {
         
     	Customer c = customerRepository.findById(Long.parseLong(customerId)).get(); //id 2 Customer
     	///Orders order = ordersRepository.findById(Long.parseLong(orderId)).get();
-    	c.setLoyalityPoints(c.getLoyalityPoints()- 20);
+    	c.setLoyalityPoints(c.getLoyalityPoints()- 10);
     	customerRepository.save(c);
     	
     	logger.info("customerId: " + customerId + ". points " + c.getLoyalityPoints());
