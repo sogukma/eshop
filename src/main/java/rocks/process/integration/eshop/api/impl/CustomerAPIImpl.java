@@ -21,6 +21,10 @@ import rocks.process.integration.eshop.repository.OrdersRepository;
 import java.util.UUID;
 
 
+/**
+ * 
+ *
+ */
 @Component
 public class CustomerAPIImpl implements CustomerAPI {
 
@@ -34,9 +38,7 @@ public class CustomerAPIImpl implements CustomerAPI {
 	
     @Override
     public Customer findCustomer(String customerId) {
-    	//get customer by Id from DB
-       // return new Customer(Long.parseLong(customerId), "Business", 20000, UUID.randomUUID().toString(), UUID.randomUUID().toString());
-        
+          
         Customer c = customerRepository.findById(Long.parseLong(customerId)).get();
         return c;
         
@@ -46,8 +48,11 @@ public class CustomerAPIImpl implements CustomerAPI {
     public Customer editLoyaltyBalance(String customerId) {
         
     	Customer c = customerRepository.findById(Long.parseLong(customerId)).get(); //id 2 Customer
-    	///Orders order = ordersRepository.findById(Long.parseLong(orderId)).get();
+      	//Nach Zahlung wird prinzipiell Loyality Points um 10 vermindert
+    	if(c.getLoyalityPoints()>= 10)
+    	{
     	c.setLoyalityPoints(c.getLoyalityPoints()- 10);
+    	}
     	customerRepository.save(c);
     	
     	logger.info("customerId: " + customerId + ". points " + c.getLoyalityPoints());

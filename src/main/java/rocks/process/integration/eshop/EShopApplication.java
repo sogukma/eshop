@@ -1,3 +1,4 @@
+
 package rocks.process.integration.eshop;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,11 @@ import rocks.process.integration.eshop.domain.Pretzel;
 import rocks.process.integration.eshop.repository.CustomerRepository;
 import rocks.process.integration.eshop.repository.PretzelRepository;
 
+/**
+ * Hier wird Fake Brezel und Customer erstellt
+ * 
+ * @author Malik
+ */
 @SpringBootApplication
 public class EShopApplication {
 	@Autowired private PretzelRepository pretzelRepository;

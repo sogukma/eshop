@@ -32,14 +32,6 @@ public class CheckoutController {
 	@Autowired
 	public CustomerRepository customerRepository;
     
-//    @GetMapping(path = "/checkout", produces = "text/plain")
-//    public ResponseEntity<String> getCheckout(){
-//        List<OrderMessage.OrderItem> orderItems = new ArrayList<>();
-//        orderItems.add(new OrderMessage.OrderItem("1", UUID.randomUUID().toString(), 15));
-//        OrderMessage orderMessage = new OrderMessage(UUID.randomUUID().toString(), "1", 2000D, 15, orderItems, null, null, null, "Order Placed", sto);
-//        checkoutAdapter.doCheckout(orderMessage);
-//        return ResponseEntity.ok(orderMessage.toString());
-//    }
     
     
 
@@ -52,15 +44,21 @@ public class CheckoutController {
 		
 		Orders order = ordersService.orderPretzel(c.getCustomerId()+"", p.getPretzelId()+"", 100);
 		
-		//loyalitätspunkt wird gesteigert wegen bestellung
+		//loyalitätspunkt wird gesteigert mit einem Zehntel der Totalkosten der Bestellung
 		c.setLoyalityPoints(c.getLoyalityPoints() + (int) order.getTotalCost()/10);
 		
 		List<OrderMessage.OrderItem> orderItems = new ArrayList<>();
 		orderItems.add(new OrderMessage.OrderItem("1", p.getPretzelId()+"", order.getAmount())); // item 1, productId 1, quantity 100
 		
-		//loyalitätspunkte werden in zahlung eingefügt
-		Double charingAmountOfMoney = order.getTotalCost()-c.getLoyalityPoints();
-		
+		Double charingAmountOfMoney;
+		// Zahlungsbetrag wird von loyalitätspunkte abgezogen, sofern kleiner als Zahlunsbetrag
+		if(order.getTotalCost()>= c.getLoyalityPoints()) {
+		charingAmountOfMoney = order.getTotalCost()-c.getLoyalityPoints();
+		}
+		else
+		{
+			charingAmountOfMoney = order.getTotalCost();
+		}
 		OrderMessage orderMessage = new OrderMessage(order.getOrderId()+"", c.getCustomerId()+"", 1D, 1, orderItems, null, null, null, "Order Placed", p.getStockAmount(), charingAmountOfMoney);		
 		checkoutAdapter.doOrder(orderMessage);
 		return ResponseEntity.ok(orderMessage.toString());
