@@ -25,7 +25,7 @@ public class EShopApplication {
     	Pretzel p = new Pretzel(); // id 1
     	p.setPrice(5);
     	p.setName("Butterbrezel");
-    	p.setStockAmount(3);
+    	p.setStockAmount(101);
     	p = pretzelRepository.save(p);
     	
     	Customer c = new Customer(); //id 2
