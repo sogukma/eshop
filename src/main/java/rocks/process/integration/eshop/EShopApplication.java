@@ -23,14 +23,15 @@ public class EShopApplication {
     @PostConstruct
     public void init(){
     	Pretzel p = new Pretzel(); // id 1
-    	p.setPrice(132);
-    	p.setName("ads");
+    	p.setPrice(5);
+    	p.setName("Butterbrezel");
     	p.setStockAmount(3);
     	p = pretzelRepository.save(p);
     	
     	Customer c = new Customer(); //id 2
-    	c.setName("dsf");
-
+    	c.setName("Schreiner");
+    	c.setFirstname("Jumbo");
+    	c.setAge(51);
     	c = customerRepository.save(c);
 
     }

@@ -28,12 +28,12 @@ public class OrdersService {
 	@Autowired
 	public CustomerRepository customerRepository;
 	
-	public Orders orderPretzel(String costumerName, String pretzelName, int amount)
+	public Orders orderPretzel(String costumerId, String pretzelId, int amount)
 	{
 	
 		
-		Customer c = customerRepository.findById(2L).get(); //id 2 Customer
-		Pretzel p = pretzelRepository.findById(1L).get(); //id 1 Pretzel
+		Customer c = customerRepository.findById(Long.parseLong(costumerId)).get(); //id 2 Customer
+		Pretzel p = pretzelRepository.findById(Long.parseLong(pretzelId)).get(); //id 1 Pretzel
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();

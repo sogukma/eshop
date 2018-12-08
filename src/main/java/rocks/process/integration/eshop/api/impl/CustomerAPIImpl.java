@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 
 import rocks.process.integration.eshop.api.CustomerAPI;
 import rocks.process.integration.eshop.domain.Customer;
-import rocks.process.integration.eshop.domain.Order;
+
 import rocks.process.integration.eshop.domain.Orders;
 import rocks.process.integration.eshop.repository.CustomerRepository;
-import rocks.process.integration.eshop.repository.OrderRepository;
+
 import rocks.process.integration.eshop.repository.OrdersRepository;
 
 import java.util.UUID;
