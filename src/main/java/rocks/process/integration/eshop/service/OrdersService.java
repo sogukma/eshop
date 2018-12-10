@@ -51,6 +51,7 @@ public class OrdersService {
 		pretzelRepository.save(p);
 		
 		int intCost = (int) o.getTotalCost();
+		//loyalitätspunkt wird gesteigert mit einem Zehntel der Totalkosten der Bestellung
 		c.setLoyalityPoints(c.getLoyalityPoints() + intCost/10);
 		customerRepository.save(c);
 		return o;

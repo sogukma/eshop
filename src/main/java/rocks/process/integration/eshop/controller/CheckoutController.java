@@ -45,7 +45,7 @@ public class CheckoutController {
 		Orders order = ordersService.orderPretzel(c.getCustomerId()+"", p.getPretzelId()+"", 100);
 		
 		//loyalitätspunkt wird gesteigert mit einem Zehntel der Totalkosten der Bestellung
-		c.setLoyalityPoints(c.getLoyalityPoints() + (int) order.getTotalCost()/10);
+		// c.setLoyalityPoints(c.getLoyalityPoints() + (int) order.getTotalCost()/10);
 		
 		List<OrderMessage.OrderItem> orderItems = new ArrayList<>();
 		orderItems.add(new OrderMessage.OrderItem("1", p.getPretzelId()+"", order.getAmount())); // item 1, productId 1, quantity 100
